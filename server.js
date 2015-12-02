@@ -1,11 +1,14 @@
 var express = require('express');
 var mongojs = require('mongojs');
 var bodyParser = require ('body-parser');
+var cors = require('cors');
 
 var app = express();
 var db = mongojs('eCommerce', ['products']);
 
 app.use(bodyParser.json());
+app.use(cors());
+app.use(express.static(__dirname + '/public'));
 
 
 app.post('/api/products', function(req, res) {
